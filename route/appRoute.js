@@ -1,7 +1,7 @@
 const controller = require('../controller/appController')
 const config = require('../config/appConfig')
 const middleware = require('../middleware/example')
-
+const authMiddleware=require('../middleware/auth')
 
 let setRouter = (app) => {
     let baseUrl = `${config.version}/blog`
@@ -14,10 +14,11 @@ let setRouter = (app) => {
     // app.get('/route/routeParam/:firstName/:lastName',controller.checkRouteParam)
     // app.get('/route/queryParam/',controller.checkQueryParam)
     // app.post('/route/bodyParam/',controller.checkBodyParam)
-    app.get(baseUrl + '/allBlogs', controller.readAllBlogs)
+    app.get(baseUrl + '/allBlogs',authMiddleware.authorisation ,controller.readAllBlogs)
     /**@api {get} /api/v1/blog/allBlogs Read all blogs
      * @apiVersion 1.0.0
      * @apiGroup Read
+     * @apiParam {string} authToken Pass the authToken as a query parameter
      * @apiSuccessExample {json} Success-Response:
      * {
         "err": false,
@@ -49,10 +50,11 @@ let setRouter = (app) => {
      */
 
 
-    app.get(baseUrl + '/getSingleBlog/:blogId', controller.readSingleBlog)
+    app.get(baseUrl + '/getSingleBlog/:blogId', authMiddleware.authorisation,controller.readSingleBlog)
     /**@api {get} /api/v1/blog/getSingleBlog/:blogId Read a particular blog
      * @apiVersion 1.0.0
      * @apiGroup Read
+     * @apiParam {string} authToken Pass the authToken as a query parameter
      * @apiParam {string} blogId Pass the blog id of the blog as route parameter
      * @apiSuccessExample {json} Success-Response:
      * {

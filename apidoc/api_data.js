@@ -115,6 +115,19 @@ define({ "api": [
     "title": "Read all blogs",
     "version": "1.0.0",
     "group": "Read",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>Pass the authToken as a query parameter</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "examples": [
         {
@@ -228,6 +241,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>Pass the authToken as a query parameter</p>"
+          },
           {
             "group": "Parameter",
             "type": "string",

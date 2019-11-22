@@ -75,6 +75,10 @@ blogModel.find((err,result)=>{
     }
     else{
         let response = standardResponse.formatResponse(false,'All blogs found',200,result)
+        // logger.captureInfo(`AuthToken detected ${req.user}`,1,'appController/createBlog')
+        // console.log(req.user);
+        // console.log(result);
+        
         res.send(response)
     }
 }).select('-__v -_id');
@@ -97,6 +101,8 @@ blogModel.find({blogId:blogId},(err,result)=>{
     else{
         let response = standardResponse.formatResponse(false,'Requested blog found',200,result)
         logger.captureInfo('Found blog',1,'appController/readSingleBlog')
+        console.log(result);
+        
         res.send(response)
     }
 }).select('-__v -_id');
