@@ -65,7 +65,7 @@ let createBlog = (req, res) => {
 let readAllBlogs = (req,res)=>{
 blogModel.find((err,result)=>{
     if(err){
-        console.log(err);
+        // console.log(err);
         let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
         res.send(response)
     }
@@ -84,7 +84,7 @@ let readSingleBlog = (req,res)=>{
 let blogId=req.params.blogId
 blogModel.find({blogId:blogId},(err,result)=>{
     if(err){
-        console.log(err);
+        // console.log(err);
         let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
         logger.captureError(err,10,'appController/readSingleBlog')
         res.send(response)
@@ -106,7 +106,7 @@ let readBlogByAuthor = (req,res)=>{
     let author=req.params.author
     blogModel.find({author:author},(err,result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
             res.send(response)
         }
@@ -125,7 +125,7 @@ let readBlogByCategory =(req,res)=>{
     let category=req.params.category
     blogModel.find({category:category},(err,result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
             res.send(response)
         }
@@ -144,7 +144,7 @@ let removeBlog =(req,res)=>{
     let blogId=req.params.blogId
     blogModel.deleteOne({blogId:blogId},(err,result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
             res.send(response)
         }
@@ -162,11 +162,13 @@ let removeBlog =(req,res)=>{
 let updateBlog=(req,res)=>{
     let blogId=req.params.blogId
     let options=req.body
-    console.log(options);
+    // console.log(options);
     
     blogModel.updateOne({blogId:blogId},options,(err,result)=>{
+        // console.log(result);
+        
         if(err){
-            console.log(err);
+            // console.log(err);
             let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
             res.send(response)
         }
@@ -186,7 +188,7 @@ let increaseViewCount = (req,res)=>{
     
     blogModel.findOne({blogId:blogId},(err,result)=>{
         if(err){
-            console.log(err);
+            // console.log(err);
             let response = standardResponse.formatResponse(true,'Some error occurred',500,err)
             res.send(response)
         }
